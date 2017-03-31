@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 #include "iopcdefine.h"
-#include "iopcops_cfg_bdb.h"
+#include "iopcops_cfg.h"
 #include "main.h"
 
 unsigned long parse_paramegers(int argc, char** argv, char* cfg_file, char* cfg_key)
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
     switch(func) {
     case SHOW_ALL:
-        GET_INSTANCE(ops_cfg_bdb)->show_all(cfg_file);
+        GET_INSTANCE_CFG_IFC()->show_all(cfg_file);
     break;
     }
 
