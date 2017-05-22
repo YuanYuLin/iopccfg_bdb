@@ -1,12 +1,4 @@
 
-ifeq ($ARCH, arm)
-CROSS_COMPILE = arm-none-linux-gnueabi-
-endif
-
-ifeq ($ARCH, pc)
-CROSS_COMPILE = 
-endif 
-
 STRIP = $(CROSS_COMPILE)strip
 CC = $(CROSS_COMPILE)gcc 
 CFLAGS += -Werror -Wfatal-errors -Wunused
@@ -19,10 +11,7 @@ all: $(TARGET)
 	@rm -f $@
 	$(CC) $(CFLAGS) -c $< -o $@
 
-version:
-	bash gen_version.sh > version.h
-
-$(TARGET): version $(OBJS)
+$(TARGET): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) -o $@
 	$(STRIP) $(TARGET)
 
